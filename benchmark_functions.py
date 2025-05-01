@@ -11,8 +11,17 @@ def ackley(x):
     d = len(x)
     return -a * np.exp(-b * np.sqrt(np.sum(x**2) / d)) - np.exp(np.sum(np.cos(c * x)) / d) + a + np.e
 
-def griewank(x):
-    return 1 + np.sum(x**2)/4000 - np.prod(np.cos(x / np.sqrt(np.arange(1, len(x)+1))))
+def griewank(x): return 1 + np.sum(x**2)/4000 - np.prod(np.cos(x/np.sqrt(np.arange(1, len(x)+1))))
 
 def zakharov(x):
-    return np.sum(x**2) + (np.sum(0.5 * np.arange(1, len(x)+1) * x))**2 + (np.sum(0.5 * np.arange(1, len(x)+1) * x))**4
+    a = 0.5 * np.arange(1, len(x)+1)
+    return np.sum(x**2) + np.dot(a, x)**2 + np.dot(a, x)**4
+
+functions = {
+    'Sphere': sphere,
+    'Rastrigin': rastrigin,
+    'Rastrigin II': rastrigin_ii,
+    'Ackley': ackley,
+    'Griewank': griewank,
+    'Zakharov': zakharov
+}
